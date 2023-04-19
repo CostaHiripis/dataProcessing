@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.w3schools.com"
+           elementFormDefault="qualified"
+           xmlns="https://www.w3schools.com">
+
+    <xs:element name="co2Emissions">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="co2Emission" type="co2Emission" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="co2Emission">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="countryCode" type="countryCode"/>
+            <xs:element name="country" type="xs:string"/>
+            <xs:element name="year" type="year"/>
+            <xs:element name="value" type="xs:float"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="countryCode">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z][A-Z][A-Z]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="year">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="1900"/>
+            <xs:maxInclusive value="2020"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

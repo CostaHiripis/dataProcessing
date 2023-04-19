@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.w3schools.com"
+           elementFormDefault="qualified"
+           xmlns="https://www.w3schools.com">
+
+    <xs:element name="temperatures">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="temperature" type="temperature" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="temperature">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="year" type="year"/>
+            <xs:element name="averageTemperature" type="xs:float"/>
+            <xs:element name="averageTemperatureUncertainty" type="xs:float"/>
+            <xs:element name="country" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="year">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="1900"/>
+            <xs:maxInclusive value="2020"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

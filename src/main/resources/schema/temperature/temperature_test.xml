@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<temperatures
+        xmlns="https://www.w3schools.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.w3schools.com temperature_schema.xsd">
+
+    <temperature>
+        <id>12451</id>
+        <year>1900</year>
+        <averageTemperature>19.1</averageTemperature>
+        <averageTemperatureUncertainty>2.294</averageTemperatureUncertainty>
+        <country>Albania</country>
+    </temperature>
+
+</temperatures>

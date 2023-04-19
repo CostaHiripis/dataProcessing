@@ -1,0 +1,8 @@
+{
+  "$schema": "co2Emissions_schema.json",
+  "id": 1,
+  "countryCode": "ABW",
+  "country": "Aruba",
+  "year": 1900,
+  "value": 11092.675
+}

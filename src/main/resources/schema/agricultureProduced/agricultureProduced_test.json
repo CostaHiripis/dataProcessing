@@ -1,0 +1,14 @@
+{
+  "$schema": "agricultureProduced_schema.json",
+  "id": 1,
+  "areaCode": 2,
+  "area": "Afghanistan",
+  "itemCode": 221,
+  "item": "Almonds, with shell",
+  "elementCode": 5312,
+  "element": "Area harvested",
+  "year": 1975,
+  "unit": "ha",
+  "value": 0,
+  "flag": "F"
+}

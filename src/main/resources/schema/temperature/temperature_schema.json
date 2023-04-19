@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "The temperature per country each year",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "number",
+      "maxItems": 1,
+      "minimum": 1
+    },
+    "year": {
+      "type": "number",
+      "maxItems": 1,
+      "minimum": 1900,
+      "maximum": 2020
+    },
+    "averageTemperature": {
+      "type": "number",
+      "maxItems": 1
+    },
+    "averageTemperatureUncertainty": {
+      "type": "number",
+      "maxItems": 1
+    },
+    "country": {
+      "type": "string",
+      "maxItems": 1
+    }
+  }
+}

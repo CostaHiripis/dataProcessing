@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://www.w3schools.com"
+           elementFormDefault="qualified"
+           xmlns="https://www.w3schools.com">
+
+    <xs:element name="agricultureProduced">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="agriculture" type="agriculture" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="agriculture">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="areaCode" type="xs:int"/>
+            <xs:element name="area" type="xs:string"/>
+            <xs:element name="itemCode" type="xs:int"/>
+            <xs:element name="item" type="xs:string"/>
+            <xs:element name="elementCode" type="elementCode"/>
+            <xs:element name="element" type="xs:string"/>
+            <xs:element name="year" type="year"/>
+            <xs:element name="unit" type="unit"/>
+            <xs:element name="value" type="xs:long"/>
+            <xs:element name="flag" type="flag"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="elementCode">
+        <xs:restriction base="xs:int">
+            <xs:pattern value="[0-9][0-9][0-9][0-9]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="unit">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="0.1g/An"/>
+            <xs:enumeration value="1000 Head"/>
+            <xs:enumeration value="1000 No"/>
+            <xs:enumeration value="100mg/An"/>
+            <xs:enumeration value="ha"/>
+            <xs:enumeration value="Head"/>
+            <xs:enumeration value="hg"/>
+            <xs:enumeration value="hg/An"/>
+            <xs:enumeration value="hg/ha"/>
+            <xs:enumeration value="No"/>
+            <xs:enumeration value="No/An"/>
+            <xs:enumeration value="tonnes"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="flag">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="*"/>
+            <xs:enumeration value="A"/>
+            <xs:enumeration value="F"/>
+            <xs:enumeration value="Fc"/>
+            <xs:enumeration value="lm"/>
+            <xs:enumeration value="M"/>
+            <xs:enumeration value="R"/>
+            <xs:enumeration value=""/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="year">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="1900"/>
+            <xs:maxInclusive value="2020"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

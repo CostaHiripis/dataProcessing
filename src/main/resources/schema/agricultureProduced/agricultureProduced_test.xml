@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<agricultureProduced
+        xmlns="https://www.w3schools.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.w3schools.com agricultureProduced_schema.xsd">
+
+    <agriculture>
+        <id>1</id>
+        <areaCode>2</areaCode>
+        <area>Afghanistan</area>
+        <itemCode>221</itemCode>
+        <item>Almonds, with shell</item>
+        <elementCode>5312</elementCode>
+        <element>Area harvested</element>
+        <year>1975</year>
+        <unit>ha</unit>
+        <value>0</value>
+        <flag>F</flag>
+    </agriculture>
+
+</agricultureProduced>
