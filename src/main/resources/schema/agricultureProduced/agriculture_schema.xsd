@@ -4,7 +4,7 @@
            elementFormDefault="qualified"
            xmlns="https://www.w3schools.com">
 
-    <xs:element name="agricultureProduced">
+    <xs:element name="agricultures">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="agriculture" type="agriculture" minOccurs="0" maxOccurs="unbounded" />
@@ -14,7 +14,6 @@
 
     <xs:complexType name="agriculture">
         <xs:sequence>
-            <xs:element name="id" type="xs:long"/>
             <xs:element name="areaCode" type="xs:int"/>
             <xs:element name="area" type="xs:string"/>
             <xs:element name="itemCode" type="xs:int"/>

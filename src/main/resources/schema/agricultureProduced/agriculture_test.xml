@@ -1,11 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<agricultureProduced
+<agricultures
         xmlns="https://www.w3schools.com"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="https://www.w3schools.com agricultureProduced_schema.xsd">
+        xsi:schemaLocation="https://www.w3schools.com agriculture_schema.xsd">
 
     <agriculture>
-        <id>1</id>
         <areaCode>2</areaCode>
         <area>Afghanistan</area>
         <itemCode>221</itemCode>
@@ -18,4 +17,4 @@
         <flag>F</flag>
     </agriculture>
 
-</agricultureProduced>
+</agricultures>

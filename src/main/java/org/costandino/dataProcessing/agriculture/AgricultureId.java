@@ -1,4 +1,4 @@
-package org.costandino.dataProcessing.agricultureProduced;
+package org.costandino.dataProcessing.agriculture;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AgricultureProducedId implements Serializable {
+public class AgricultureId implements Serializable {
 
     private int areaCode;
     private int itemCode;
