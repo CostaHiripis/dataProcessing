@@ -1,25 +1,32 @@
 package org.costandino.dataProcessing.agriculture;
 
 import lombok.RequiredArgsConstructor;
+import org.costandino.dataProcessing.GlobalRestHandler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.io.File;
 
 
 @RestController
 @RequestMapping("api/v1/agriculture")
 @RequiredArgsConstructor
-public class AgricultureController {
+public class AgricultureController extends GlobalRestHandler {
+
+    private final File jsonSchema = new File("src/main/resources/schema/agriculture/agriculture_schema.json");
 
     private final AgricultureService agricultureService;
 
     @PostMapping(
     consumes = {"application/json", "application/xml"})
-    public ResponseEntity<Void> save(
+    public ResponseEntity<Object> save(
             @RequestBody Agriculture agriculture
     ) {
-        agricultureService.save(agriculture);
-        return ResponseEntity.ok().build();
+        if (isEntityValidJson(agriculture, jsonSchema)) {
+            agricultureService.save(agriculture);
+            return ResponseEntity.ok().build();
+        }
 
+        return ResponseEntity.badRequest().build();
     }
 
     @GetMapping(value = "/json", produces = {"application/json"})

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.persistence.*;
 import lombok.*;
+import org.costandino.dataProcessing.DomainEntity;
 
 @Entity
 @Data
@@ -13,7 +14,7 @@ import lombok.*;
 @NoArgsConstructor
 @IdClass(AgricultureId.class)
 @JacksonXmlRootElement(localName = "Agriculture")
-public class Agriculture {
+public class Agriculture implements DomainEntity {
 
     @Id
     @JacksonXmlProperty
