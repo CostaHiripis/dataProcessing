@@ -4,28 +4,22 @@
            elementFormDefault="qualified"
            xmlns="https://www.w3schools.com">
 
-    <xs:element name="agricultures">
+    <xs:element name="agriculture">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="agriculture" type="agriculture" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="areaCode" type="xs:int"/>
+                <xs:element name="area" type="xs:string"/>
+                <xs:element name="itemCode" type="xs:int"/>
+                <xs:element name="item" type="xs:string"/>
+                <xs:element name="elementCode" type="elementCode"/>
+                <xs:element name="element" type="xs:string"/>
+                <xs:element name="year" type="year"/>
+                <xs:element name="unit" type="unit"/>
+                <xs:element name="value" type="xs:long"/>
+                <xs:element name="flag" type="flag"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
-    <xs:complexType name="agriculture">
-        <xs:sequence>
-            <xs:element name="areaCode" type="xs:int"/>
-            <xs:element name="area" type="xs:string"/>
-            <xs:element name="itemCode" type="xs:int"/>
-            <xs:element name="item" type="xs:string"/>
-            <xs:element name="elementCode" type="elementCode"/>
-            <xs:element name="element" type="xs:string"/>
-            <xs:element name="year" type="year"/>
-            <xs:element name="unit" type="unit"/>
-            <xs:element name="value" type="xs:long"/>
-            <xs:element name="flag" type="flag"/>
-        </xs:sequence>
-    </xs:complexType>
 
     <xs:simpleType name="elementCode">
         <xs:restriction base="xs:int">

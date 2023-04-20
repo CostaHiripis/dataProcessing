@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "description": "The value of items produced in the respective agricultural sector",
+  "description": "The value of item produced in the respective agricultural sector",
   "type": "object",
   "properties": {
     "areaCode":{
@@ -35,7 +35,7 @@
       "type": "number",
       "maxItems": 1,
       "minimum": 1900,
-      "maximum": 2020
+      "maximum": 2023
     },
     "unit": {
       "type": "string",
@@ -74,5 +74,6 @@
         ""
       ]
     }
-  }
+  },
+  "required": ["areaCode", "area", "itemCode", "item", "elementCode", "element", "flag", "value", "unit", "year" ]
 }
