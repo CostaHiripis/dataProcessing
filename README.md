@@ -12,10 +12,12 @@ This repository holds the API for the data processing course of NHL Stenden
   1. Download docker (https://www.docker.com/products/docker-desktop/)
   2. Extract the dump.zip folder
   3. Clone this repo
-  4. Run `mvn clean package`
-  5. Run `docker-compose up -d` wait for this to complete before running step 6
-  6. Run `java -jar .\target\dataProcessing-0.0.1-SNAPSHOT.jar` in the project files (/dataProcessing)
-  7. Test away
+  4. Install maven (https://phoenixnap.com/kb/install-maven-windows)
+  5. Navigate to the root of the project (/dataProcessing) in the terminal of your choice
+  6. Run `mvn clean package`
+  7. Run `docker-compose up -d` wait for this to complete before running step 6
+  8. Run `java -jar .\target\dataProcessing-0.0.1-SNAPSHOT.jar`
+  9. Test away
 
 ```
 
