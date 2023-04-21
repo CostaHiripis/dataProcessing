@@ -1,8 +1,0 @@
-{
-  "$schema": "temperature_schema.json",
-  "id": 1,
-  "year": 1900,
-  "averageTemperature": 10.19,
-  "averageTemperatureUncertainty": 2.294,
-  "country": "albania"
-}

@@ -2,9 +2,9 @@ package org.costandino.dataProcessing.services;
 
 import lombok.RequiredArgsConstructor;
 import org.costandino.dataProcessing.dao.jpa.AgricultureRepository;
-import org.costandino.dataProcessing.domain.Agriculture.Agriculture;
-import org.costandino.dataProcessing.domain.Agriculture.AgricultureId;
-import org.costandino.dataProcessing.domain.Agriculture.Agricultures;
+import org.costandino.dataProcessing.domain.agriculture.Agriculture;
+import org.costandino.dataProcessing.domain.agriculture.AgricultureId;
+import org.costandino.dataProcessing.domain.agriculture.Agricultures;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,14 +19,13 @@ public class AgricultureService {
         agricultureRepository.save(agriculture);
     }
 
-    public Agriculture findAgricultureByAreaCodeItemCodeElementCodeAndYear(int areaCode, int itemCode, int elementCode, int year) {
+    public Agriculture findAgricultureById(int areaCode, int itemCode, int elementCode, int year) {
         AgricultureId agricultureId = new AgricultureId(areaCode, itemCode, elementCode, year);
         return agricultureRepository.findById(agricultureId).orElseThrow(NullPointerException::new);
     }
 
-
-    public Agricultures findCowsProducedAndSlaughteredByArea(String area)  {
-        var agricultures = (List<Agriculture>) agricultureRepository.findByAreaAndItemCodeAndElementCode(area, 867, 5320);
+    public Agricultures findCowsProducedAndSlaughteredByYear(int year)  {
+        var agricultures = (List<Agriculture>) agricultureRepository.findByYearAndItemCodeAndElementCode(year, 867, 5320);
         var agricultureSearchResults = new Agricultures();
         agricultureSearchResults.setAgriculture(agricultures);
         return agricultureSearchResults;
@@ -41,7 +40,7 @@ public class AgricultureService {
 
     public void delete(int areaCode, int itemCode, int elementCode, int year) {
         //Checks if the agriculture exists
-        findAgricultureByAreaCodeItemCodeElementCodeAndYear(areaCode, itemCode, elementCode, year);
+        findAgricultureById(areaCode, itemCode, elementCode, year);
         AgricultureId agricultureId = new AgricultureId(areaCode, itemCode, elementCode, year);
         agricultureRepository.deleteById(agricultureId);
     }
@@ -49,7 +48,7 @@ public class AgricultureService {
     public void update(int areaCode, int itemCode, int elementCode, int year, Agriculture agriculture) {
 
         //Checks if the agriculture exists
-        findAgricultureByAreaCodeItemCodeElementCodeAndYear(areaCode, itemCode, elementCode, year);
+        findAgricultureById(areaCode, itemCode, elementCode, year);
         agricultureRepository.save(agriculture);
     }
 }

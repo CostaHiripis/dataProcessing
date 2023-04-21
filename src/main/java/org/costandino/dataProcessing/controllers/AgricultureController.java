@@ -1,9 +1,11 @@
 package org.costandino.dataProcessing.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.costandino.dataProcessing.domain.Agriculture.Agriculture;
-import org.costandino.dataProcessing.domain.Agriculture.Agricultures;
+import org.costandino.dataProcessing.domain.agriculture.Agriculture;
+import org.costandino.dataProcessing.domain.agriculture.Agricultures;
+import org.costandino.dataProcessing.domain.agriculture.GlobalCowsProducedAndSlaughtered;
 import org.costandino.dataProcessing.services.AgricultureService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +15,9 @@ import java.util.Map;
 
 
 @RestController
-@RequestMapping("api/v1/agriculture")
+@RequestMapping("agriculture")
 @RequiredArgsConstructor
+@Tag(name = "Agriculture", description = "The agriculture endpoints")
 public class AgricultureController extends GlobalRestHandler {
 
     private final File jsonSchema = new File("src/main/resources/schema/agriculture/agriculture_schema.json");
@@ -25,14 +28,14 @@ public class AgricultureController extends GlobalRestHandler {
     @Operation(summary = "Creates an agriculture entity")
     @PostMapping(
     consumes = {"application/json", "application/xml"})
-    public ResponseEntity<Object> save(
+    public ResponseEntity<?> save(
             @RequestHeader Map<String, String> headers,
             @RequestBody Agriculture agriculture
     ) {
         boolean isValid = false;
         switch (headers.get("content-type")) {
             case "application/json" -> isValid = isEntityValidJson(agriculture, jsonSchema);
-            case "application/xml" -> isValid = isEntityValidXml(agriculture, xmlSchema);
+            case "application/xml" -> isValid = isEntityValidXml(agriculture, xmlSchema, "Agriculture");
         }
         if (isValid) {
             agricultureService.save(agriculture);
@@ -61,8 +64,8 @@ public class AgricultureController extends GlobalRestHandler {
             @PathVariable("elementCode") int elementCode,
             @PathVariable("year") int year
     ) {
-        Agriculture agriculture = agricultureService.findAgricultureByAreaCodeItemCodeElementCodeAndYear(areaCode, itemCode, elementCode, year);
-        isEntityValidXml(agriculture, xmlSchema);
+        Agriculture agriculture = agricultureService.findAgricultureById(areaCode, itemCode, elementCode, year);
+        isEntityValidXml(agriculture, xmlSchema, "Agriculture");
         return agriculture;
     }
 
@@ -74,30 +77,40 @@ public class AgricultureController extends GlobalRestHandler {
             @PathVariable("elementCode") int elementCode,
             @PathVariable("year") int year
     ) {
-        Agriculture agriculture = agricultureService.findAgricultureByAreaCodeItemCodeElementCodeAndYear(areaCode, itemCode, elementCode, year);
+        Agriculture agriculture = agricultureService.findAgricultureById(areaCode, itemCode, elementCode, year);
         isEntityValidJson(agriculture, jsonSchema);
         return agriculture;
     }
 
-    @Operation(summary = "Gets all the agriculture entries of cows produced and slaughtered by country in xml format")
-    @GetMapping(value="/xml/{area}", produces = {"application/xml"})
-    public Agricultures getCowsProducedAndSlaughteredByCountryXml(
-            @PathVariable("area") String area
+    @Operation(summary = "Gets the head count of cows produced and slaughtered by year in xml format")
+    @GetMapping(value="/xml/{year}", produces = {"application/xml"})
+    public GlobalCowsProducedAndSlaughtered getCowsProducedAndSlaughteredByYearXml(
+            @PathVariable("year") int year
     ) {
-        return getValidAgriculture(agricultureService.findCowsProducedAndSlaughteredByArea(area).getAgriculture(), xmlSchema, "application/xml");
+        var validAgriculture = getValidAgriculture(agricultureService.findCowsProducedAndSlaughteredByYear(year).getAgriculture(), xmlSchema, "application/xml").getAgriculture();
+        double totalCowsProducedAndSlaughtered = 0;
+        for (Agriculture agriculture: validAgriculture) {
+            totalCowsProducedAndSlaughtered += agriculture.getValue();
+        }
+        return new GlobalCowsProducedAndSlaughtered(Math.round(totalCowsProducedAndSlaughtered/validAgriculture.size()));
     }
 
-    @Operation(summary = "Gets all the agriculture entries of cows produced and slaughtered by country in json format")
-    @GetMapping(value="/json/{area}", produces = {"application/json"})
-    public Agricultures getCowsProducedAndSlaughteredByCountryJson(
-            @PathVariable("area") String area
+    @Operation(summary = "Gets the head count of cows produced and slaughtered by year in json format")
+    @GetMapping(value="/json/{year}", produces = {"application/json"})
+    public GlobalCowsProducedAndSlaughtered getCowsProducedAndSlaughteredByYearJson(
+            @PathVariable("year") int year
     ) {
-        return getValidAgriculture(agricultureService.findCowsProducedAndSlaughteredByArea(area).getAgriculture(), jsonSchema, "application/json");
+        var validAgriculture = getValidAgriculture(agricultureService.findCowsProducedAndSlaughteredByYear(year).getAgriculture(), jsonSchema, "application/json").getAgriculture();
+        double totalCowsProducedAndSlaughtered = 0;
+        for (Agriculture agriculture: validAgriculture) {
+            totalCowsProducedAndSlaughtered += agriculture.getValue();
+        }
+        return new GlobalCowsProducedAndSlaughtered(Math.round(totalCowsProducedAndSlaughtered/validAgriculture.size()));
     }
 
     @Operation(summary = "Updates a specific agriculture entity")
-    @PutMapping(value="{areaCode}/{itemCode}/{elementCode}/{year}", consumes = {"application/xml", "application/json"})
-    public ResponseEntity<Void> update(
+    @PutMapping(value="/{areaCode}/{itemCode}/{elementCode}/{year}", consumes = {"application/xml", "application/json"})
+    public ResponseEntity<?> update(
             @PathVariable("areaCode") int areaCode,
             @PathVariable("itemCode") int itemCode,
             @PathVariable("elementCode") int elementCode,
@@ -109,7 +122,7 @@ public class AgricultureController extends GlobalRestHandler {
         boolean isValid = false;
         switch (headers.get("content-type")) {
             case "application/json" -> isValid = isEntityValidJson(agriculture, jsonSchema);
-            case "application/xml" -> isValid = isEntityValidXml(agriculture, xmlSchema);
+            case "application/xml" -> isValid = isEntityValidXml(agriculture, xmlSchema, "Agriculture");
         }
         if (isValid) {
             agricultureService.update(areaCode, itemCode, elementCode, year, agriculture);
@@ -119,8 +132,8 @@ public class AgricultureController extends GlobalRestHandler {
     }
 
     @Operation(summary = "Deletes a specific agriculture entity")
-    @DeleteMapping(value = "/{areaCode}/{itemCode}/{elementCode}/{year}", produces = {"application/json", "application/xml"})
-    public ResponseEntity<Void> delete(
+    @DeleteMapping(value = "/{areaCode}/{itemCode}/{elementCode}/{year}")
+    public ResponseEntity<?> delete(
             @PathVariable("areaCode") int areaCode,
             @PathVariable("itemCode") int itemCode,
             @PathVariable("elementCode") int elementCode,

@@ -1,4 +1,4 @@
-package org.costandino.dataProcessing.domain.Agriculture;
+package org.costandino.dataProcessing.domain.agriculture;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;

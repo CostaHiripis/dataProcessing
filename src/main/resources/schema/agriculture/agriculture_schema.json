@@ -24,8 +24,7 @@
     "elementCode": {
       "type": "number",
       "maxItems": 1,
-      "minimum": 1,
-      "pattern": "^[0-9]{4}$"
+      "minimum": 1
     },
     "element": {
       "type": "string",

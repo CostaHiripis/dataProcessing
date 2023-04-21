@@ -4,23 +4,15 @@
            elementFormDefault="qualified"
            xmlns="https://www.w3schools.com">
 
-    <xs:element name="temperatures">
+    <xs:element name="globalSeaLevel">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="temperature" type="temperature" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="year" type="year"/>
+                <xs:element name="mm" type="xs:float"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:complexType name="temperature">
-        <xs:sequence>
-            <xs:element name="id" type="xs:long"/>
-            <xs:element name="year" type="year"/>
-            <xs:element name="averageTemperature" type="xs:float"/>
-            <xs:element name="averageTemperatureUncertainty" type="xs:float"/>
-            <xs:element name="country" type="xs:string"/>
-        </xs:sequence>
-    </xs:complexType>
 
     <xs:simpleType name="year">
         <xs:restriction base="xs:int">

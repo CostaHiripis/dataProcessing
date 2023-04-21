@@ -11,7 +11,7 @@
                 <xs:element name="area" type="xs:string"/>
                 <xs:element name="itemCode" type="xs:int"/>
                 <xs:element name="item" type="xs:string"/>
-                <xs:element name="elementCode" type="elementCode"/>
+                <xs:element name="elementCode" type="xs:int"/>
                 <xs:element name="element" type="xs:string"/>
                 <xs:element name="year" type="year"/>
                 <xs:element name="unit" type="unit"/>
@@ -21,11 +21,6 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:simpleType name="elementCode">
-        <xs:restriction base="xs:int">
-            <xs:pattern value="[0-9][0-9][0-9][0-9]"/>
-        </xs:restriction>
-    </xs:simpleType>
     <xs:simpleType name="unit">
         <xs:restriction base="xs:string">
             <xs:enumeration value="0.1g/An"/>

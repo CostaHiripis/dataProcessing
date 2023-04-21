@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<globalSeaLevel
+        xmlns="https://www.w3schools.com"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.w3schools.com globalSeaLevel_schema.xsd">
+
+        <year>1900</year>
+        <mm>19.1</mm>
+</globalSeaLevel>

@@ -4,23 +4,16 @@
            elementFormDefault="qualified"
            xmlns="https://www.w3schools.com">
 
-    <xs:element name="co2Emissions">
+    <xs:element name="co2Emission">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="co2Emission" type="co2Emission" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="countryCode" type="countryCode"/>
+                <xs:element name="country" type="xs:string"/>
+                <xs:element name="year" type="year"/>
+                <xs:element name="value" type="xs:float"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
-    <xs:complexType name="co2Emission">
-        <xs:sequence>
-            <xs:element name="id" type="xs:long"/>
-            <xs:element name="countryCode" type="countryCode"/>
-            <xs:element name="country" type="xs:string"/>
-            <xs:element name="year" type="year"/>
-            <xs:element name="value" type="xs:float"/>
-        </xs:sequence>
-    </xs:complexType>
     
     <xs:simpleType name="countryCode">
         <xs:restriction base="xs:string">

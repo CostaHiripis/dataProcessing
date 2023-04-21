@@ -1,4 +1,4 @@
-package org.costandino.dataProcessing.domain.Agriculture;
+package org.costandino.dataProcessing.domain.agriculture;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
