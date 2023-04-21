@@ -42,3 +42,4 @@ Datasets
 *.zip
 *.tar.gz
 *.rar
+/dump.sql
