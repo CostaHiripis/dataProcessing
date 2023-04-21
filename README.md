@@ -12,9 +12,9 @@ This repository holds the API for the data processing course of NHL Stenden
   1. Download docker (https://www.docker.com/products/docker-desktop/)
   2. Extract the dump.zip folder
   3. Clone this repo
-  4. Run mvn clean package
-  5. Run docker-compose up -d wait for this to complete before running step 6
-  6. Run java -jar .\target\dataProcessing-0.0.1-SNAPSHOT.jar in the project files (/dataProcessing)
+  4. Run `mvn clean package`
+  5. Run `docker-compose up -d` wait for this to complete before running step 6
+  6. Run `java -jar .\target\dataProcessing-0.0.1-SNAPSHOT.jar` in the project files (/dataProcessing)
   7. Test away
 
 ```
@@ -24,7 +24,7 @@ This repository holds the API for the data processing course of NHL Stenden
 
 ```
   1. Press control and C to stop the jar file
-  2. Run docker-compose down -v to remove the containers
+  2. Run `docker-compose down -v` to remove the containers
 ```
     
     
