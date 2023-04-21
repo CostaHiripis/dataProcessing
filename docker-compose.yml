@@ -13,3 +13,9 @@ services:
       MYSQL_DATABASE: data_processing
     ports:
       - "3306:3306"
+    volumes:
+      - container-volume:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+volumes:
+  container-volume:
